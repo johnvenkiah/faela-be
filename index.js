@@ -14,7 +14,7 @@ const GOOGLE_CALENDAR_ID = process.env.CALENDAR_ID;
 const PORT = process.env.PORT;
 
 var corsOptions = {
-  origin: 'https://www.faela-band.com/live',
+  origin: 'https://www.faela-band.com',
   optionsSuccessStatus: 200,
 };
 
