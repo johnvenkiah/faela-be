@@ -5,7 +5,6 @@ require('dotenv').config();
 // const serverless = require('serverless-http');
 
 const app = express();
-app.use(cors());
 
 const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
 const GOOGLE_PRIVATE_KEY = process.env.PRIVATE_KEY.replace(/\\n/g, '\n');
@@ -14,9 +13,12 @@ const GOOGLE_PROJECT_NUMBER = process.env.PROJECT_NUMBER;
 const GOOGLE_CALENDAR_ID = process.env.CALENDAR_ID;
 const PORT = process.env.PORT;
 
-app.get('/events', async (req, res) => {
-  // res.set('Access-Control-Allow-Origin', '*');
+var corsOptions = {
+  origin: 'https://www.faela-band.com/live',
+  optionsSuccessStatus: 200,
+};
 
+app.get('/events', cors(corsOptions), async (req, res) => {
   try {
     const jwtClient = new google.auth.JWT(
       GOOGLE_CLIENT_EMAIL,
